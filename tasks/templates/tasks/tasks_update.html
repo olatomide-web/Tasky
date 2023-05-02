@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+{% block main %}
+
+<link rel="stylesheet" href="{% static '/css/style.css' %}">
+
+  <div class="container">
+    <div class="row my-2">
+        <div class="col-md-3 col-sm-12"></div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="card border-0 pt-5 py-5">
+                <div class="heading">
+                    <a href="{% url 'tasks-homepage' %}"><i style="color:#000332;" class="bi bi-arrow-left-circle-fill mx-3 fs-2"></i></a>
+                    <h4 class="text-center" >Edit Task</h4>
+                </div>
+                <div class="card-body pt-5">
+
+                    <form class="py-3" action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <!--{{ form.as_p }}-->
+                        {{ form|crispy }}
+
+                        <div class="create-button pt-5 text-center">
+                            <input type="submit" value="Update" class="todobutton mb-5">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+      <div class="col-md-3 col-sm-12"></div>
+    </div>
+  </div>
+
+{% endblock %}

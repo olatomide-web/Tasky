@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+
+<link rel="stylesheet" href="{% static '/css/style.css' %}">
+  <div class="container">
+    <div class="row my-4">
+      <div class="col-md-3 col-sm-12"></div>
+      <div class="col-lg-6 col-md-12 col-sm-12">
+        <div class="card border-0" style="width: 100%;">
+          <div class="image">
+            <img class="img-fluid text-center rounded mx-auto d-block pt-1 pb-5 mb-5" src="{% static '/img/welcome.png' %}" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body text-center">
+            <h3>Welcome to Tasky</h3>
+            <p class="card-text pb-2 mb-5">A todo list to over 10 million people around the globe.</p>
+            <a href="{% url 'tasks-homepage' %}"><button type="button" class="todobutton mb-5">Let's Start</button></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-12"></div>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+
+<link rel="stylesheet" href="{% static '/css/style.css' %}">
+
+  <div class="container">
+    <div class="row my-2">
+        <div class="col-md-3 col-sm-12"></div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="card border-0 py-5">
+                <div class="heading">
+                    <a href="{% url 'tasks-homepage' %}"><i style="color:#000332;" class="bi bi-arrow-left-circle-fill mx-3 fs-2"></i></a>
+                    <h4 class="text-center" >Task Details</h4>
+                </div>
+                <div class="card-body pt-5">
+                    <h3 class="mb-2">To-dos</h3>    
+                
+                        <div class="card py-0 mt-1 bg-outline-secondary">
+                            <div class="card-body">  
+                              <h6>{{task.Task_name}}</h6>
+                              <p style="font-size: 14px;">{{task.Description}}</p>
+                              <p class="text-danger" ><i class="fa-solid fa-circle-plus" aria-hidden="true"></i> {{task.Date_and_Time}}</p>
+                              
+                            
+                                <div class="row">
+                                  <div class="col-md-8">
+                                    <!-- <button style="background-color: #000332;" class="btn text-light" type="submit">Mark as complete</button> -->
+                                  </div>
+                                  <div class="col-md-4 text-end">
+                                    <a href="{% url 'tasks_update' task.id %}"><i style="color: #000332;" class="bi bi-pencil-square mx-2 fs-4"></i></a>
+                                    {% include 'delete_confirmation.html' %}
+                                  </div>
+                                </div>
+                                
+                                
+                            
+
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+      <div class="col-md-3 col-sm-12"></div>
+    </div>
+  </div>
+
+{% endblock %}

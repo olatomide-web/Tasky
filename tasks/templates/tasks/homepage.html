@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+
+<link rel="stylesheet" href="{% static '/css/style.css' %}">
+
+  <div class="container">
+    <div class="row my-2">
+        <div class="col-md-3 col-sm-12"></div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="card border-0 py-5">
+                <div class="heading text-center">
+                    <h4>HomePage</h4>
+                </div>
+                <div class="card-body pt-5">
+                    <h3 class="mb-3">To-dos</h3>    
+                    <form action="{% url 'tasks_search' %}" method="GET" class="d-flex">
+                        {% csrf_token %}
+                        <input class="form-control me-2" name="keyword" type="search" placeholder="Search to-dos" aria-label="Search">
+                        <button class="todobutton2" type="submit">Search</button>
+                    </form>
+
+                    {% if task %}
+                    {% for task in task %}
+                        <div class="card py-0 mt-3 bg-outline-secondary">
+                            <div class="card-body">
+                                <a href="{% url 'tasks_details' task.id  %}">
+                                    <div class="row">
+                                        <div class="col-md-8"><h6>{{task.Task_name}}</h6></div>
+                                        <div class="col-md-4 text-end"><i style="color:#000332;" class="bi bi-chevron-right text-end fs-5"></i></div>
+                                    </div> 
+                                    
+                                    <!-- <p style="font-size: 14px;">{{task.Description}}</p> -->
+
+                                    <p class="text-danger" ><i class="fa-solid fa-circle-plus" aria-hidden="true"></i> {{task.Date_and_Time}}</p>
+                                </a>
+                            </div>
+                      </div>
+
+                    {% endfor %}
+                    <div class="plus-icon mt-5 text-center sticky">
+                        <a href="{% url 'tasks_create' %}"><i style="color:#000332;" class="plus-icon bi-plus-circle-fill fs-1 sticky"></i></a>
+                    </div> 
+                    {% else %}
+
+                    <div class="row pt-5">
+                        <div class="col-md-12 text-center">
+                            <i style="color:#000332;" class="bi bi-check2-circle fs-1"></i>
+                            <h4>No to-dos</h4>
+                        </div>
+                    </div>
+
+                    <div class="plus-icon mt-5 text-center sticky">
+                        <a href="{% url 'tasks_create' %}"><i style="color:#000332;" class="plus-icon bi-plus-circle-fill fs-1 sticky"></i></a>
+                    </div> 
+
+                </div>
+            </div>
+        </div>
+      <div class="col-md-3 col-sm-12"></div>
+    </div>
+  </div>
+{% endif %}
+{% endblock %}
